@@ -1,0 +1,18 @@
+[features]
+seeds = false
+[programs.localnet]
+chart_game = "FdJTfw6ZkVNHKAvB2Fxvce3sGEbK8UpVtzaoMCBeYmKY"
+faucet = "9xfdz2dctjv5May6pdXnYEprU4YcPweLnPCVub2aMxKE"
+[programs.devnet]
+chart_game = "FdJTfw6ZkVNHKAvB2Fxvce3sGEbK8UpVtzaoMCBeYmKY"
+faucet = "9xfdz2dctjv5May6pdXnYEprU4YcPweLnPCVub2aMxKE"
+[registry]
+url = "https://anchor.projectserum.com"
+
+[provider]
+cluster = "devnet"
+wallet = "./local-key.json"
+
+[scripts]
+test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
+faucet_test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/faucet.ts"

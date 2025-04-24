@@ -1,0 +1,695 @@
+{
+  "version": "0.1.0",
+  "name": "chart_game",
+  "instructions": [
+    {
+      "name": "initialize",
+      "accounts": [
+        {
+          "name": "payer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "globalConfigData",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "managerAccount",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authorityTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "bumps",
+          "type": {
+            "defined": "PoolBumps"
+          }
+        }
+      ]
+    },
+    {
+      "name": "changeAuthority",
+      "accounts": [
+        {
+          "name": "authority",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "globalConfigData",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "newAuthority",
+          "type": {
+            "option": "publicKey"
+          }
+        }
+      ]
+    },
+    {
+      "name": "changeManager",
+      "accounts": [
+        {
+          "name": "authority",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "globalConfigData",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "newManager",
+          "type": {
+            "option": "publicKey"
+          }
+        }
+      ]
+    },
+    {
+      "name": "initGame",
+      "accounts": [
+        {
+          "name": "globalConfigData",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "gameData",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "startTime",
+          "type": "i64"
+        },
+        {
+          "name": "endTime",
+          "type": "i64"
+        },
+        {
+          "name": "openPrice",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "betGame",
+      "accounts": [
+        {
+          "name": "payer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "globalConfigData",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "gameData",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "betData",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userData",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "entrants",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "betTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "startTime",
+          "type": "i64"
+        },
+        {
+          "name": "betDirection",
+          "type": {
+            "defined": "BetDirection"
+          }
+        },
+        {
+          "name": "betAmount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "updateGame",
+      "accounts": [
+        {
+          "name": "payer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "globalConfigData",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "oldGameData",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "newGameData",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "prevStartTime",
+          "type": "i64"
+        },
+        {
+          "name": "newStartTime",
+          "type": "i64"
+        },
+        {
+          "name": "newEndTime",
+          "type": "i64"
+        },
+        {
+          "name": "prevClosePrice",
+          "type": "u64"
+        },
+        {
+          "name": "newOpenPrice",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "claimPrize",
+      "accounts": [
+        {
+          "name": "payer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "globalConfigData",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userData",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "entrants",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payerTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "GlobalConfigData",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "name": "managerAccount",
+            "type": "publicKey"
+          },
+          {
+            "name": "gameCount",
+            "type": "u128"
+          },
+          {
+            "name": "gameState",
+            "type": {
+              "option": {
+                "defined": "GameState"
+              }
+            }
+          },
+          {
+            "name": "currentGame",
+            "type": "i64"
+          },
+          {
+            "name": "previousGame",
+            "type": "i64"
+          },
+          {
+            "name": "tokenMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "tokenVault",
+            "type": "publicKey"
+          },
+          {
+            "name": "bumps",
+            "type": {
+              "defined": "PoolBumps"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "GameData",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "startTime",
+            "type": "i64"
+          },
+          {
+            "name": "endTime",
+            "type": "i64"
+          },
+          {
+            "name": "openPrice",
+            "type": "u64"
+          },
+          {
+            "name": "closePrice",
+            "type": "u64"
+          },
+          {
+            "name": "longBetAmount",
+            "type": "u64"
+          },
+          {
+            "name": "longBetCount",
+            "type": "u32"
+          },
+          {
+            "name": "shortBetAmount",
+            "type": "u64"
+          },
+          {
+            "name": "shortBetCount",
+            "type": "u32"
+          },
+          {
+            "name": "finish",
+            "type": "bool"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BetData",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "game",
+            "type": "publicKey"
+          },
+          {
+            "name": "user",
+            "type": "publicKey"
+          },
+          {
+            "name": "betDirection",
+            "type": {
+              "option": {
+                "defined": "BetDirection"
+              }
+            }
+          },
+          {
+            "name": "betAmount",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UserData",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "countWin",
+            "type": "u32"
+          },
+          {
+            "name": "countLose",
+            "type": "u32"
+          },
+          {
+            "name": "countDraw",
+            "type": "u32"
+          },
+          {
+            "name": "countBet",
+            "type": "u32"
+          },
+          {
+            "name": "countGame",
+            "type": "u32"
+          },
+          {
+            "name": "totalBet",
+            "type": "u128"
+          },
+          {
+            "name": "totalLongBet",
+            "type": "u128"
+          },
+          {
+            "name": "totalShortBet",
+            "type": "u128"
+          },
+          {
+            "name": "totalClaim",
+            "type": "u128"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UserEntrantData",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "front",
+            "type": "u32"
+          },
+          {
+            "name": "rear",
+            "type": "u32"
+          },
+          {
+            "name": "entrantsQueue",
+            "type": {
+              "array": [
+                "publicKey",
+                5
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "PoolBumps",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "vault",
+            "type": "u8"
+          },
+          {
+            "name": "globalConfig",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "GameState",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Pending"
+          },
+          {
+            "name": "OnGoing"
+          },
+          {
+            "name": "Pausing"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BetDirection",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "LONG"
+          },
+          {
+            "name": "SHORT"
+          }
+        ]
+      }
+    },
+    {
+      "name": "GameResult",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "LONG"
+          },
+          {
+            "name": "SHORT"
+          },
+          {
+            "name": "DRAW"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "IncorrectOwner",
+      "msg": "Account has incorrect owner!"
+    },
+    {
+      "code": 6001,
+      "name": "IncorrectTokenOwner",
+      "msg": "Account has incorrect token owner!"
+    },
+    {
+      "code": 6002,
+      "name": "IncorrectManager",
+      "msg": "Account has incorrect manager!"
+    },
+    {
+      "code": 6003,
+      "name": "InvalidBetDirection",
+      "msg": "BetDirection must be one-way"
+    },
+    {
+      "code": 6004,
+      "name": "EntrantsQueueIsFull",
+      "msg": "Entrants queue is full. Claim prize first"
+    },
+    {
+      "code": 6005,
+      "name": "EntrantsQueueIsEmpty",
+      "msg": "Entrants queue is empty"
+    },
+    {
+      "code": 6006,
+      "name": "IncorrectAccountsLength",
+      "msg": "Incorrect length of accounts"
+    },
+    {
+      "code": 6007,
+      "name": "IncorrectClaimAccount",
+      "msg": "Account for claim is incorrect"
+    },
+    {
+      "code": 6008,
+      "name": "IncorrectClaimAccounts",
+      "msg": "Accounts for claim is incorrect"
+    },
+    {
+      "code": 6009,
+      "name": "IncorrectEntrantAccount",
+      "msg": "Account has incorrect entrant"
+    },
+    {
+      "code": 6010,
+      "name": "PermissionDenied",
+      "msg": "Permission denied"
+    }
+  ],
+  "metadata": {
+    "address": "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS",
+    "origin": "anchor",
+    "binaryVersion": "0.24.2",
+    "libVersion": "0.24.2"
+  }
+}

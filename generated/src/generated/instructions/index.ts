@@ -1,0 +1,7 @@
+export * from './betGame'
+export * from './changeAuthority'
+export * from './changeManager'
+export * from './claimPrize'
+export * from './initGame'
+export * from './initialize'
+export * from './updateGame'
